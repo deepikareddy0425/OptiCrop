@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}About — OptiCrop{% endblock %}
+{% block content %}
+
+<section class="section" style="padding-top: 64px;">
+  <div class="section-label">About the project</div>
+  <h2>Smart Agricultural Production Optimization Engine</h2>
+  <p class="section-sub">
+    OptiCrop is a machine-learning powered web application that recommends the most
+    suitable crop for a given set of soil and environmental conditions. It's built to
+    help farmers, agricultural researchers, and agribusinesses make faster,
+    data-driven planting decisions.
+  </p>
+
+  <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-top: 40px;">The seven signals it reads</h3>
+  <div class="chip-row">
+    <span class="chip">N — Nitrogen</span>
+    <span class="chip">P — Phosphorous</span>
+    <span class="chip">K — Potassium</span>
+    <span class="chip">Temperature</span>
+    <span class="chip">Humidity</span>
+    <span class="chip">pH</span>
+    <span class="chip">Rainfall</span>
+  </div>
+
+  <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-top: 40px;">How a recommendation is produced</h3>
+  <div class="grid-3">
+    <div class="card">
+      <h3>1. Collect</h3>
+      <p>Soil test readings and local climate data are gathered from the field or a weather source.</p>
+    </div>
+    <div class="card">
+      <h3>2. Predict</h3>
+      <p>A trained classifier (chosen by comparing Logistic Regression, Decision Tree, Random Forest, and KNN) scores every candidate crop.</p>
+    </div>
+    <div class="card">
+      <h3>3. Recommend</h3>
+      <p>The highest-confidence crop is returned, along with a short note on why it fits those conditions.</p>
+    </div>
+  </div>
+
+  <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-top: 40px;">Under the hood</h3>
+  <p class="section-sub">
+    Data preprocessing includes null checks, IQR-based outlier handling, and feature
+    scaling. K-Means clustering is used exploratively to surface natural groupings in
+    growing conditions before supervised models are trained and evaluated on
+    Accuracy, Precision, Recall, and F1-score. The best-performing model is
+    serialized and served through this Flask application.
+  </p>
+
+  <a class="btn btn-primary" href="{{ url_for('find_your_crop') }}">Try it now &rarr;</a>
+</section>
+
+{% endblock %}

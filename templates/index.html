@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}OptiCrop — Smart Agricultural Production Optimization{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Data-driven crop recommendation</span>
+    <h1>Know your soil.<br><em>Grow the right crop.</em></h1>
+    <p class="lead">
+      OptiCrop reads your soil nutrients and local climate, then recommends the crop
+      most likely to thrive &mdash; so every hectare, every drop of water, and every
+      season of work counts.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ url_for('find_your_crop') }}">Find your crop &rarr;</a>
+      <a class="btn btn-ghost" href="{{ url_for('about') }}">How it works</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">The problem</div>
+  <h2>Guesswork is expensive</h2>
+  <p class="section-sub">
+    Farmers routinely choose crops on habit or hearsay, not on what the soil and
+    climate actually support. That mismatch drives poor yields, wasted fertilizer,
+    and unnecessary crop failure &mdash; year after year.
+  </p>
+
+  <div class="grid-3">
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/>
+      </svg>
+      <h3>Seven soil &amp; climate signals</h3>
+      <p>Nitrogen, Phosphorous, Potassium, temperature, humidity, pH, and rainfall &mdash; the parameters that matter most to crop suitability.</p>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M8 12l3 3 5-6"/>
+      </svg>
+      <h3>Trained &amp; evaluated models</h3>
+      <p>Logistic Regression, Decision Tree, Random Forest and KNN are trained and compared; the strongest performer is deployed.</p>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <rect x="3" y="4" width="18" height="16" rx="2"/>
+        <path d="M3 9h18M8 4v0M16 4v0"/>
+      </svg>
+      <h3>Instant recommendations</h3>
+      <p>Enter your field's readings and get a crop recommendation with a confidence score in seconds.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-label">Ready when you are</div>
+  <h2>Get a recommendation for your field</h2>
+  <p class="section-sub">
+    Head to the Find Your Crop page, enter your soil and weather readings,
+    and see which crop the model recommends for those exact conditions.
+  </p>
+  <a class="btn btn-primary" href="{{ url_for('find_your_crop') }}">Start now &rarr;</a>
+</section>
+
+{% endblock %}

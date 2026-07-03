@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Find Your Crop — OptiCrop{% endblock %}
+{% block content %}
+
+<section class="section" style="padding-top: 64px;">
+  <div class="section-label">Prediction tool</div>
+  <h2>Find your crop</h2>
+  <p class="section-sub">
+    Enter your soil test results and local climate readings below. OptiCrop will
+    recommend the crop best suited to those exact conditions.
+  </p>
+
+  <div class="predict-layout">
+    <form class="field-form" method="POST" action="{{ url_for('predict') }}">
+      <div class="field-grid">
+        <div class="field">
+          <label for="N">Nitrogen (N) <span class="unit">kg/ha</span></label>
+          <input type="number" step="any" id="N" name="N" placeholder="e.g. 90" required
+                 value="{{ form_values.N if form_values else '' }}">
+        </div>
+        <div class="field">
+          <label for="P">Phosphorous (P) <span class="unit">kg/ha</span></label>
+          <input type="number" step="any" id="P" name="P" placeholder="e.g. 42" required
+                 value="{{ form_values.P if form_values else '' }}">
+        </div>
+        <div class="field">
+          <label for="K">Potassium (K) <span class="unit">kg/ha</span></label>
+          <input type="number" step="any" id="K" name="K" placeholder="e.g. 43" required
+                 value="{{ form_values.K if form_values else '' }}">
+        </div>
+        <div class="field">
+          <label for="temperature">Temperature <span class="unit">&deg;C</span></label>
+          <input type="number" step="any" id="temperature" name="temperature" placeholder="e.g. 24.5" required
+                 value="{{ form_values.temperature if form_values else '' }}">
+        </div>
+        <div class="field">
+          <label for="humidity">Humidity <span class="unit">%</span></label>
+          <input type="number" step="any" id="humidity" name="humidity" placeholder="e.g. 82" required
+                 value="{{ form_values.humidity if form_values else '' }}">
+        </div>
+        <div class="field">
+          <label for="ph">Soil pH <span class="unit">0–14</span></label>
+          <input type="number" step="any" id="ph" name="ph" placeholder="e.g. 6.5" required
+                 value="{{ form_values.ph if form_values else '' }}">
+        </div>
+        <div class="field" style="grid-column: 1 / -1;">
+          <label for="rainfall">Rainfall <span class="unit">mm</span></label>
+          <input type="number" step="any" id="rainfall" name="rainfall" placeholder="e.g. 200" required
+                 value="{{ form_values.rainfall if form_values else '' }}">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary form-submit">Predict my crop</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result-panel">
+      <div class="result-eyebrow">Recommended crop</div>
+      <h3 class="result-crop">{{ prediction }}</h3>
+      {% if confidence %}
+      <div class="result-confidence">Model confidence: {{ confidence }}%</div>
+      {% endif %}
+      <p class="result-info">{{ info }}</p>
+    </div>
+    {% elif error %}
+    <div class="result-panel">
+      <div class="result-error">{{ error }}</div>
+    </div>
+    {% else %}
+    <div class="result-panel empty">
+      <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M12 22C12 22 5 18 5 11C5 6.02944 8.02944 3 12 3C15.9706 3 19 6.02944 19 11C19 18 12 22 12 22Z"/>
+        <path d="M12 22V11"/>
+      </svg>
+      <p>Your recommendation will appear here once you submit your field's readings.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

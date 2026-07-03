@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}OptiCrop{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <nav class="navbar">
+    <a class="brand" href="{{ url_for('home') }}">
+      <svg class="brand-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 22C12 22 5 18 5 11C5 6.02944 8.02944 3 12 3C15.9706 3 19 6.02944 19 11C19 18 12 22 12 22Z" stroke="#D3A13C" stroke-width="1.6"/>
+        <path d="M12 22V11" stroke="#9DC98A" stroke-width="1.6"/>
+        <path d="M12 14C12 14 8 13 8 9" stroke="#9DC98A" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      OptiCrop
+    </a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('home') }}" class="{{ 'active' if active == 'home' }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}" class="{{ 'active' if active == 'about' }}">About</a></li>
+      <li><a href="{{ url_for('find_your_crop') }}" class="{{ 'active' if active == 'find' }}">Find Your Crop</a></li>
+    </ul>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <footer class="footer">
+    <p>OptiCrop &mdash; Smart Agricultural Production Optimization Engine. Built with Flask &amp; scikit-learn.</p>
+  </footer>
+</body>
+</html>
